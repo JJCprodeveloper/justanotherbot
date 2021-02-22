@@ -153,7 +153,7 @@ function init(){
                    return;
                 }
               }
-              bot.tossStack(collected,(error)=>log(error));
+              bot.tossStack(collected,(error)=>console.log(error));
           }
          
      });
