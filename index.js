@@ -51,6 +51,7 @@ var killmobs = true;
 var killplayers = false;
 var completed = true;
 var oncespawn = false;
+var tofollow;
 
 init ();
 
