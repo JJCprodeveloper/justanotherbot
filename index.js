@@ -190,7 +190,27 @@ function init(){
       bot.once('spawn',function(){
         const mcData = require('minecraft-data')(bot.version);
         const defaultMove = new Movements(bot, mcData);
-        
+        //FOLLOW THREAD
+        followid = setInterval(function(){
+          if(tofollow ){
+            
+            if(completed){
+              //bot.chat('fuckfuckfuck');
+            completed = false;
+            const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
+            if(!target){bot.chat('I cannot find the user ' + tofollow );
+            tofollow=null;
+            return;};
+            const p = target.position;
+            try{
+            bot.pathfinder.setMovements(defaultMove);
+            bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+              }catch(err){
+                 bot.chat(err);
+              }
+            }
+           }
+        },10);
         bot.on('goal_reached',function(){
            completed=true;
         });
@@ -220,31 +240,10 @@ function init(){
                     
                     tofollow = username;
                     bot.chat('following user '+ username);
-                    followid = setInterval(function(){
-                      if(tofollow ){
-                        
-                        if(completed){
-                          //bot.chat('fuckfuckfuck');
-                        completed = false;
-                        const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
-                        if(!target){bot.chat('I cannot find the user ' + tofollow );
-                        tofollow=null;
-                        return;};
-                        const p = target.position;
-                        try{
-                        bot.pathfinder.setMovements(defaultMove);
-                        bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
-                          }catch(err){
-                             bot.chat(err);
-                          }
-                        }
-                       }else{
-                         bot.chat('unfollowing user ' + username);
-                         competed=false;
-                       }
-                    },10);
+                    
                 }else{
                     tofollow = null;
+                    
                     
                 }
             }else if(message === '.slain home'){
