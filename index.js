@@ -77,7 +77,7 @@ function init(){
      //const Item = require("prismarine-item")(bot.version);
      bot.loadPlugin(pathfinder);
     
-
+      
      executeAsync(function(){
          bot.chat('/tell Notch' + Math.random());
          bot.updateHeldItem;
@@ -190,6 +190,20 @@ function init(){
       bot.once('spawn',function(){
         const mcData = require('minecraft-data')(bot.version);
         const defaultMove = new Movements(bot, mcData);
+        class ThreadUtil {
+          start(cb, t) {
+              this.stop();
+              this.id = setInterval(() => {
+                  cb.call(this);  
+              }, t);
+          }
+          stop() {
+              if (this.id) {
+                  clearInterval(this.id);
+                  this.id = null;
+              }
+          }
+        }
         bot.on('goal_reached',function(){
            completed=true;
         });
@@ -219,6 +233,30 @@ function init(){
                     
                     tofollow = username;
                     bot.chat('following user '+ username);
+                    ThreadUtil.start(function(){
+                      if(tofollow ){
+                        
+                        if(completed){
+                          //bot.chat('fuckfuckfuck');
+                        completed = false;
+                        const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
+                        if(!target){bot.chat('I cannot find the user ' + tofollow );
+                        tofollow=null;
+                        return;};
+                        const p = target.position;
+                        try{
+                        bot.pathfinder.setMovements(defaultMove);
+                        bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+                          }catch(err){
+                             bot.chat(err);
+                          }
+                        }
+                       }else{
+                         bot.chat('unfollowing user ' + username);
+                         ThreadUtil.stop();
+                       }
+                    }, 10);
+                    /*
                     setInterval(function(){
                       if(tofollow ){
                         
@@ -245,7 +283,7 @@ function init(){
                 }else{
                     tofollow = null;
                     
-                }
+                }*/
             }else if(message === '.slain home'){
                 if(tofollow){
                   tofollow = null;
@@ -280,6 +318,7 @@ function init(){
       bot.on('kicked',function(){init();});
 
 }
+
     
 
 
