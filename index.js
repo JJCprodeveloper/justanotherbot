@@ -190,7 +190,7 @@ function init(){
         const mcData = require('minecraft-data')(bot.version);
         const defaultMove = new Movements(bot, mcData);
         bot.chat('/register 69696969');
-        bot.chat('/login 69696969);
+        bot.chat('/login 69696969');
         bot.on('goal_reached',function(){
            completed=true;
         });
