@@ -317,10 +317,10 @@ function init(){
       
       bot.on('kicked',function(){init();});
 
-}
+      });
 
     
-
+}
 
 
 
