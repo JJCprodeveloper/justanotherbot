@@ -191,9 +191,10 @@ function init(){
         const mcData = require('minecraft-data')(bot.version);
         const defaultMove = new Movements(bot, mcData);
         //FOLLOW THREAD
-        followid = setInterval(function(){
-          if(tofollow ){
-            
+        bot.on('goal_reached',function(){
+           completed=true;
+           if(tofollow ){
+                
             if(completed){
               //bot.chat('fuckfuckfuck');
             completed = false;
@@ -210,9 +211,6 @@ function init(){
               }
             }
            }
-        },10);
-        bot.on('goal_reached',function(){
-           completed=true;
         });
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
@@ -237,13 +235,29 @@ function init(){
             }else if(message === '.slain follow'){
                 
                 if(tofollow == null){
-                    
                     tofollow = username;
                     bot.chat('following user '+ username);
-                    
+                    if(tofollow ){
+                
+                      if(completed){
+                        //bot.chat('fuckfuckfuck');
+                      completed = false;
+                      const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
+                      if(!target){bot.chat('I cannot find the user ' + tofollow );
+                      tofollow=null;
+                      return;};
+                      const p = target.position;
+                      try{
+                      bot.pathfinder.setMovements(defaultMove);
+                      bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+                        }catch(err){
+                           bot.chat(err);
+                        }
+                      }
+                     }
                 }else{
                     tofollow = null;
-                    
+                    bot.chat('unfollowing user ' + username);
                     
                 }
             }else if(message === '.slain home'){
