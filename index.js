@@ -9,7 +9,7 @@ const swordlist = [268,272,267,276];
 var killmobs = true;
 var killplayers = false;
 var tofollow;
-const defaultMove;
+var defaultMove;
 
 init ();
 
