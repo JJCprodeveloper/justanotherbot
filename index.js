@@ -9,6 +9,7 @@ const swordlist = [268,272,267,276];
 var killmobs = true;
 var killplayers = false;
 var tofollow;
+const defaultMove;
 
 init ();
 
@@ -78,7 +79,7 @@ function init(){
       });
       bot.once('spawn',function(){
         const mcData = require('minecraft-data')(bot.version);
-        const defaultMove = new Movements(bot, mcData);
+        defaultMove = new Movements(bot, mcData);
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
             if(message === '.slain help'){
