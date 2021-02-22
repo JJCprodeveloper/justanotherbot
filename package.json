@@ -9,7 +9,7 @@
   
   "author": "",
   "license": "ISC",
-  "dependencies":{
+  "dependencies": {
     "mineflayer": "^3.2.0",
     "mineflayer-pathfinder": "^1.6.1"
   }
