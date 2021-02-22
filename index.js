@@ -196,7 +196,7 @@ function init(){
            completed=true;
            if(tofollow ){
             if(completed){
-              //bot.chat('fuckfuckfuck');
+            bot.chat('toggled completed false(event)');
             completed = false;
             const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
             if(!target){bot.chat('I cannot find the user ' + tofollow );
@@ -206,8 +206,8 @@ function init(){
             try{
             bot.pathfinder.setMovements(defaultMove);
             bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
-            bot.chat('debug:path request');
-              }catch(err){
+            bot.chat('debug:path request(event)');
+            }catch(err){
                  bot.chat(err);
               }
             }
