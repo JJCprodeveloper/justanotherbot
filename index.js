@@ -112,6 +112,7 @@ function init(){
                     tofollow = null;
                     bot.chat('unfollowing '+ username);
                 }
+                bot.chat('going home now ');
                 bot.pathfinder.setMovements(defaultMove);
                 bot.pathfinder.setGoal(new GoalNear(-179,69,-261),0);
             }
