@@ -24,7 +24,7 @@ function init(){
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
         port: 25565,
-        username: 'Slainplug',
+        username: 'AfkBotHostInHeroku',
         password: '',
         version: false,
         auth: 'mojang'
@@ -85,24 +85,24 @@ function init(){
         },20000);
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
-            if(message === '.slain help'){
-              bot.chat('Slain bot v.1');
-              bot.chat(' .slain toggleplayer --- toggle player killing');
-              bot.chat(' .slain togglemob --- toggle mob killing');
-              bot.chat(' .slain leave --- make slain leave :((((');
-              bot.chat(' .slain help --- help page');
-              bot.chat(' .slain follow');
-            }else if(message === '.slain toggleplayer'){
+            if(message === '.afkbot help'){
+              bot.chat('afkbot bot v.1');
+              bot.chat(' .afkbot toggleplayer --- toggle player killing');
+              bot.chat(' .afkbot togglemob --- toggle mob killing');
+              bot.chat(' .afkbot leave --- make afkbot leave :((((');
+              bot.chat(' .afkbot help --- help page');
+              bot.chat(' .afkbot follow');
+            }else if(message === '.afkbot toggleplayer'){
               killplayers = !killplayers;
               bot.chat('toggled killing player to ' + killplayers);
-            }else if(message === '.slain togglemob'){
+            }else if(message === '.afkbot togglemob'){
                killmobs = !killmobs;
                bot.chat('toggled killing mobs to ' + killmobs);
-            }else if(message === '.slain leave'){
+            }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end();
                 process.exit();
-            }else if(message === '.slain follow'){
+            }else if(message === '.afkbot follow'){
                 if(tofollow == null){
                     tofollow = username;
                     bot.chat('now following ' + username);
@@ -110,7 +110,7 @@ function init(){
                     tofollow = null;
                     bot.chat('unfollowing ' + username);
                 }
-            }else if(message === '.slain home'){
+            }else if(message === '.afkbot home'){
                 if(tofollow){
                     tofollow = null;
                     bot.chat('unfollowing '+ username);
@@ -122,12 +122,12 @@ function init(){
           });
       });
       bot.on('spawn',function(){
-          bot.chat('i love SlainScissors');
+          bot.chat('i love cookies');
           
       })
     
       bot.on('death',function(){
-          bot.chat('Bye Slain...I love you 3000.....');}
+          bot.chat('Bye afkbot...I love you 3000.....');}
           );
       
       bot.on('kicked',function(){init();});
