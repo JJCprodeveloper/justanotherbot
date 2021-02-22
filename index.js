@@ -36,7 +36,7 @@ function init(){
      bot.loadPlugin(pathfinder);
     
 
-    
+
       
   
 
@@ -93,7 +93,7 @@ function init(){
               killplayers = !killplayers;
               bot.chat('toggled killing player to ' + killplayers);
             }else if(message === '.slain togglemob'){
-               killmob = !killmob;
+               killmobs = !killmobs;
                bot.chat('toggled killing mobs to ' + killmobs);
             }else if(message === '.slain leave'){
                 bot.chat('cya later <3');
