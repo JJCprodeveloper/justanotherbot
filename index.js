@@ -44,7 +44,8 @@ bot.once('spawn', () => {
 const pathfinder = require('mineflayer-pathfinder').pathfinder;
 
 const Movements = require('mineflayer-pathfinder').Movements
-const  {GoalNear} = require('mineflayer-pathfinder').goals
+const  {GoalNear,GoalFollow} = require('mineflayer-pathfinder').goals
+
 const swordlist = [268,272,267,276];
 
 var killmobs = true;
@@ -205,8 +206,8 @@ function init(){
             const p = target.position;
             try{
             bot.pathfinder.setMovements(defaultMove);
-            bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
-            bot.chat('debug:path request(event)');
+            bot.pathfinder.setGoal(new GoalFollow(target));
+            bot.chat('debug:path request goalfollow(event)');
             }catch(err){
                  bot.chat(err);
               }
@@ -270,7 +271,7 @@ function init(){
                 bot.chat('going home now');
                 try{
                 bot.pathfinder.setMovements(defaultMove);
-                bot.pathfinder.setGoal(new GoalNear(-182,68,-266,0));
+                bot.pathfinder.setGoal(new GoalFollow(target,1));
                 }catch(err){
                   bot.chat(err);
                 }
