@@ -63,7 +63,7 @@ function executeAsync(func){
 function init(){
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
-        host: 'dmaxxnetwork.ir',
+        host: 'xvid.minehut.gg',
         port: 25565,
         username: 'Slainplug',
         password: '',
