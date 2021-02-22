@@ -240,7 +240,7 @@ function init(){
                         }
                        }else{
                          bot.chat('unfollowing user ' + username);
-                         clearInterval(followid);
+                         competed=false;
                        }
                     },10);
                 }else{
