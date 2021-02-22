@@ -80,6 +80,9 @@ function init(){
       bot.once('spawn',function(){
         const mcData = require('minecraft-data')(bot.version);
         defaultMove = new Movements(bot, mcData);
+        executeAsync(function(){
+           bot.chat('/' + Math.random());
+        },20000);
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
             if(message === '.slain help'){
