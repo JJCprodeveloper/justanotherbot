@@ -49,8 +49,8 @@ const swordlist = [268,272,267,276];
 
 var killmobs = true;
 var killplayers = false;
-var tofollow;
 var completed = true;
+var oncespawn = false;
 
 init ();
 
@@ -63,7 +63,7 @@ function executeAsync(func){
 function init(){
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
-        host: 'dmaxxnetwork.ir',
+        host: 'DedagraderHIST.aternos.me',
         port: 25565,
         username: 'Slainplug',
         password: '',
@@ -189,8 +189,6 @@ function init(){
       bot.once('spawn',function(){
         const mcData = require('minecraft-data')(bot.version);
         const defaultMove = new Movements(bot, mcData);
-        bot.chat('/register 69696969');
-        bot.chat('/login 69696969');
         bot.on('goal_reached',function(){
            completed=true;
         });
