@@ -109,7 +109,7 @@ function init(){
                 }
             }else if(message === '.slain home'){
                 if(tofollow){
-                    follow = null;
+                    tofollow = null;
                     bot.chat('unfollowing '+ username);
                 }
                 bot.pathfinder.setMovements(defaultMove);
