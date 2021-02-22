@@ -64,14 +64,14 @@ function init(){
 
          if (!nearentity && !nearplayer) {return;}
          if(nearentity && killmobs){
-         if( nearentity.position.distanceTo(bot.entity.position )<=7){
+         if( nearentity.position.distanceTo(bot.entity.position )<=16){
                      bot.lookAt(nearentity.position.offset(1,1,1));
                      bot.attack(nearentity); 
                      
          }
         }
          if(nearplayer && killplayers){
-             if(nearplayer.position.distanceTo(bot.entity.position) <=7){
+             if(nearplayer.position.distanceTo(bot.entity.position) <=16){
                      bot.lookAt(nearplayer.position.offset(1,1,1));
                      bot.attack(nearplayer);
              }
