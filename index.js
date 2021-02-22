@@ -305,7 +305,7 @@ function init(){
                  
               }
             }
-          });
+          };
       });
       bot.on('spawn',function(){
           bot.chat('i love SlainScissors')
