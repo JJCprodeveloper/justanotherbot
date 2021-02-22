@@ -192,9 +192,9 @@ function init(){
         const defaultMove = new Movements(bot, mcData);
         //FOLLOW THREAD
         bot.on('goal_reached',function(){
+          bot.chat('path reached');
            completed=true;
            if(tofollow ){
-                
             if(completed){
               //bot.chat('fuckfuckfuck');
             completed = false;
@@ -206,6 +206,7 @@ function init(){
             try{
             bot.pathfinder.setMovements(defaultMove);
             bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+            bot.chat('debug:path request');
               }catch(err){
                  bot.chat(err);
               }
@@ -242,6 +243,7 @@ function init(){
                       if(completed){
                         //bot.chat('fuckfuckfuck');
                       completed = false;
+                      bot.chat("toggled completed=false");
                       const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
                       if(!target){bot.chat('I cannot find the user ' + tofollow );
                       tofollow=null;
@@ -250,6 +252,7 @@ function init(){
                       try{
                       bot.pathfinder.setMovements(defaultMove);
                       bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+                      bot.chat('debug:path request');
                         }catch(err){
                            bot.chat(err);
                         }
