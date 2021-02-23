@@ -1,4 +1,3 @@
-/*
 const { exec} = require('child_process');
 var thread1;
 function startThread(){
@@ -18,15 +17,14 @@ function startThread(){
          
       });
 }
-startThread();*/
+startThread();
 
 var express = require('express');
 var app = express();
 app.get('/',function(req,res){
   res.send('Ping Pong');
 });
-app.listen(process.env.port || 4000,function(){
+app.listen(process.env.PORT || 4000,function(){
   console.log('web server started congratz!!!');
 });
-
 
