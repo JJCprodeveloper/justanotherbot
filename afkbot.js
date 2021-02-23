@@ -5,7 +5,7 @@ const pathfinder = require('./JJCpathfinder').pathfinder;
 const Movements = require('./JJCpathfinder').Movements
 const  {GoalNear} = require('./JJCpathfinder').goals
 const swordlist = [268,272,267,276];
-const threshold = 3600/20;
+const threshold = 1800/20;
 
 
 var tofollow;
