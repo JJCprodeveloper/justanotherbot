@@ -24,8 +24,8 @@ var app = express();
 app.get('/',function(req,res){
   res.send('Ping Pong');
 });
-app.listen(80,function(){
-    console.log('web server has started');
-})
+app.listen(process.env.port || 4000,function(){
+  console.log('web server started congratz!!!');
+});
 
 
