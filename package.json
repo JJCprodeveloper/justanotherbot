@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "mineflayer": "^3.2.0",
-    "mineflayer-pathfinder": "^1.6.1"
+    "mineflayer-pathfinder": "^1.6.1",
+    "ping: "^0.4.0"
   }
 }
