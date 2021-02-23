@@ -102,6 +102,7 @@ function init(){
            bot.chat('/' + Math.random());
 
         },20000);
+        
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
             if(message === '.afkbot help'){
@@ -138,6 +139,7 @@ function init(){
                 bot.chat('going home now ');
                 bot.pathfinder.setMovements(defaultMove);
                 bot.pathfinder.setGoal(new GoalNear(-179,69,-261),0);
+                
             }
           });
       });
