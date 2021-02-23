@@ -1,7 +1,11 @@
 const { exec} = require('child_process');
+const { static } = require('express');
 var thread1;
-function startThread(){
-    thread1 = exec('node afkbot.js',function(error,stdout,stderr){
+var id;
+var running = false;
+var namelist = ['Slainplug','WILDEN','WestwardSand200','Afkbot'];
+function startThread(t,username){
+    t = exec('node afkbot.js '+username,function(error,stdout,stderr){
         if(error){
             console.error(`error: ${error.message}`);
         }
@@ -11,13 +15,21 @@ function startThread(){
         console.log(`stdout:\n ${stdout}`);
       });
       thread1.on('close',function(code,signal){
+          if(id>namelist.length){
+              id=0;
+          }
+          id++;
          if(code){
-            startThread();
+            startThread(thread1,namelist[id]);
          }
+         
          
       });
 }
-startThread();
+
+
+startThread(thread1,"AfkBot");
+
 
 var express = require('express');
 var app = express();
@@ -27,4 +39,5 @@ app.get('/',function(req,res){
 app.listen(process.env.PORT || 4000,function(){
   console.log('web server started congratz!!!');
 });
+
 
