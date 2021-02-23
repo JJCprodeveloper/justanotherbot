@@ -50,16 +50,7 @@ function init(){
       bot.on('physicTick',function(){
          const nearplayer = bot.nearestEntity(function(entity){return entity.type === 'player'});
          const nearentity = bot.nearestEntity(function(entity){return entity.type === 'mob'});
-         if(tofollow){
-          const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
-          if(!target){bot.chat('I cannot find the user ' + tofollow );
-          tofollow=null;
-          return;};
-          const p = target.position;
-          bot.pathfinder.setMovements(defaultMove);
-          bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
-          
-         }
+
 
 
          if (!nearentity && !nearplayer) {return;}
@@ -76,6 +67,22 @@ function init(){
                      bot.attack(nearplayer);
              }
          }
+                    
+         if(tofollow){
+            const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
+            if(!target){bot.chat('I cannot find the user ' + tofollow );
+            tofollow=null;
+            return;};
+            try{
+            const p = target.position;
+            bot.pathfinder.setMovements(defaultMove);
+            bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+            }catch(err){
+                console.log(err);
+            }
+            
+           }
+    
       });
       bot.once('spawn',function(){
         
