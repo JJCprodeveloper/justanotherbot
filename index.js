@@ -19,4 +19,13 @@ function startThread(){
 }
 startThread();
 
+var express = require('express');
+var app = express();
+app.get('/',function(req,res){
+  res.send('Ping Pong');
+});
+app.listen(80,function(){
+    console.log('web server has started');
+})
+
 
