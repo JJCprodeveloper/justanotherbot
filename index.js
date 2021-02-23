@@ -4,8 +4,8 @@ var thread1;
 var id;
 var running = false;
 var namelist = ['Slainplug','WILDEN','WestwardSand200','Afkbot'];
-function startThread(t,username){
-    t = exec('node afkbot.js '+username,function(error,stdout,stderr){
+function startThread(username){
+    thread1 = exec('node afkbot.js '+username,function(error,stdout,stderr){
         if(error){
             console.error(`error: ${error.message}`);
         }
@@ -20,7 +20,7 @@ function startThread(t,username){
           }
           id++;
          if(code){
-            startThread(thread1,namelist[id]);
+            startThread(namelist[id]);
          }
          
          
@@ -28,7 +28,7 @@ function startThread(t,username){
 }
 
 
-startThread(thread1,"AfkBot");
+startThread("AfkBot");
 
 
 var express = require('express');
