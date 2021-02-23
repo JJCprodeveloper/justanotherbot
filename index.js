@@ -1,17 +1,21 @@
 const mineflayer = require('mineflayer');
 
-const pathfinder = require('mineflayer-pathfinder').pathfinder;
+const pathfinder = require('./JJCpathfinder').pathfinder;
 
-const Movements = require('mineflayer-pathfinder').Movements
-const  {GoalNear} = require('mineflayer-pathfinder').goals
+const Movements = require('./JJCpathfinder').Movements
+const  {GoalNear} = require('./JJCpathfinder').goals
 const swordlist = [268,272,267,276];
 
 var killmobs = true;
 var killplayers = false;
 var tofollow;
 var defaultMove;
+var goal;
 
-init ();
+  console.log('starting afkbot...');
+  init ();
+
+
 
 
 function executeAsync(func){
@@ -43,7 +47,6 @@ function init(){
       bot.on('playerLeft',function(left){
           if(tofollow === left.username){
               tofollow == null;
-              bot.pathfinder.setGoal(new GoalNear(bot.entity.position.x,bot,entity.position.y,bot.entity.position.z,1));
           }
         });
       
@@ -70,13 +73,19 @@ function init(){
                     
          if(tofollow){
             const target = bot.players[tofollow] ? bot.players[tofollow].entity : null
-            if(!target){bot.chat('I cannot find the user ' + tofollow );
-            tofollow=null;
-            return;};
+            if(!target){
+                bot.chat('I cannot find the user ' + tofollow );
+                tofollow=null;
+                bot.pathfinder.setMovements(defaultMove);
+                bot.pathfinder.setGoal(new GoalNear(bot.entity.position.x,bot.entity.position.y,bot.entity.position.z,0));
+                return;
+            };
             try{
-            const p = target.position;
-            bot.pathfinder.setMovements(defaultMove);
-            bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+            
+              const p = target.position;
+              bot.pathfinder.setMovements(defaultMove);
+              bot.pathfinder.setGoal(new GoalNear(p.x,p.y,p.z,1));
+
             }catch(err){
                 console.log(err);
             }
@@ -88,8 +97,10 @@ function init(){
         
         const mcData = require('minecraft-data')(bot.version);
         defaultMove = new Movements(bot, mcData);
+        
         executeAsync(function(){
            bot.chat('/' + Math.random());
+
         },20000);
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
@@ -109,7 +120,7 @@ function init(){
                bot.chat('toggled killing mobs to ' + killmobs);
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
-                bot.end();
+                bot.end(0);
                 process.exit();
             }else if(message === '.afkbot follow'){
                 if(tofollow == null){
@@ -138,13 +149,11 @@ function init(){
     
       bot.on('death',function(){
           bot.chat('Bye afkbot...I love you 3000.....'); 
-          if(tofollow != null){
-            bot.chat('stop following ' + tofllow + ' because of dying');
-            tofollow = null;
-          }}
-                    
-                      
-         
+            if(tofollow != null){
+              bot.chat('stop following ' + tofollow + ' because of dying');
+              tofollow = null;
+            }
+          }                  
           );
       
       bot.on('kicked',function(){init();});
