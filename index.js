@@ -84,10 +84,6 @@ function init(){
         executeAsync(function(){
            bot.chat('/' + Math.random());
         },20000);
-        bot.on('death',function(){
-          bot.chat('stop following ' + tofllow + ' because of dying');
-          tofollow = null;
-        });
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
             if(message === '.afkbot help'){
@@ -134,7 +130,14 @@ function init(){
       })
     
       bot.on('death',function(){
-          bot.chat('Bye afkbot...I love you 3000.....');}
+          bot.chat('Bye afkbot...I love you 3000.....'); 
+          if(tofollow != null){
+            bot.chat('stop following ' + tofllow + ' because of dying');
+            tofollow = null;
+          }}
+                    
+                      
+         
           );
       
       bot.on('kicked',function(){init();});
