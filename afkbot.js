@@ -5,16 +5,20 @@ const pathfinder = require('./JJCpathfinder').pathfinder;
 const Movements = require('./JJCpathfinder').Movements
 const  {GoalNear} = require('./JJCpathfinder').goals
 const swordlist = [268,272,267,276];
+const threshold = 3600/20;
 
-var killmobs = true;
-var killplayers = false;
+
 var tofollow;
 var defaultMove;
 var goal;
+var ran;
+
 
   console.log('starting afkbot...');
-  init ();
+  var parauser = process.argv[2];
 
+  init ();
+  
 
 
 
@@ -24,11 +28,13 @@ function executeAsync(func){
 
 
 function init(){
+    process.env.process.env.killmobs = process.env.process.env.killmobs === null ? process.env.process.env.killmobs = true : process.env.process.env.killmobs;
+    process.env. process.env.killplayers = process.env. process.env.killplayers === null ? process.env.process.env.killmobs = true :  process.env. process.env.killplayers; 
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
         port: 25565,
-        username: 'AfkBot',
+        username: parauser,
         password: '',
         version: false,
         auth: 'mojang'
@@ -57,14 +63,14 @@ function init(){
 
 
          if (!nearentity && !nearplayer) {return;}
-         if(nearentity && killmobs){
+         if(nearentity && process.env.killmobs){
          if( nearentity.position.distanceTo(bot.entity.position )<=7){
                      bot.lookAt(nearentity.position.offset(1,1,1));
                      bot.attack(nearentity); 
                      
          }
         }
-         if(nearplayer && killplayers){
+         if(nearplayer &&  process.env.killplayers){
              if(nearplayer.position.distanceTo(bot.entity.position) <=7){
                      bot.lookAt(nearplayer.position.offset(1,1,1));
                      bot.attack(nearplayer);
@@ -100,7 +106,10 @@ function init(){
         
         executeAsync(function(){
            bot.chat('/' + Math.random());
-
+           ran = ran + 1;
+           if(ran > threshold){
+             process.exit();
+           }
         },20000);
         
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
@@ -114,11 +123,11 @@ function init(){
               bot.chat(' .afkbot follow --- toggle bot follow');
               bot.chat(' .afkbot home --- make bot go home');
             }else if(message === '.afkbot toggleplayer'){
-              killplayers = !killplayers;
-              bot.chat('toggled killing player to ' + killplayers);
+               process.env.killplayers = ! process.env.killplayers;
+              bot.chat('toggled killing player to ' +  process.env.killplayers);
             }else if(message === '.afkbot togglemob'){
-               killmobs = !killmobs;
-               bot.chat('toggled killing mobs to ' + killmobs);
+               process.env.killmobs = !process.env.killmobs;
+               bot.chat('toggled killing mobs to ' + process.env.killmobs);
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end(0);
