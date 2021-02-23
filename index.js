@@ -24,7 +24,7 @@ function init(){
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
         port: 25565,
-        username: 'Slainplug',
+        username: 'AfkBotHostInHeroku',
         password: '',
         version: false,
         auth: 'mojang'
@@ -122,8 +122,8 @@ function init(){
           });
       });
       bot.on('spawn',function(){
-          bot.chat('nothing i thought you bitches can still use this bot');
-          bot.chat('type .afkbot help);
+          bot.chat('Sorry i drank too much vodka yesterday');
+          bot.chat('anyway this is just a gift to you all ');
           
       })
     
