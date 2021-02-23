@@ -108,6 +108,7 @@ function init(){
            bot.chat('/' + Math.random());
            ran = ran + 1;
            if(ran > threshold){
+             bot.chat('its time to say bye times up :(');
              process.exit();
            }
         },20000);
