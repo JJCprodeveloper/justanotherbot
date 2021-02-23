@@ -10,6 +10,8 @@ const threshold = 1800/20;
 
 var tofollow;
 var defaultMove;
+var killmobs = true;
+var killplayers = false;
 var goal;
 var ran;
 
@@ -28,8 +30,7 @@ function executeAsync(func){
 
 
 function init(){
-    process.env.killmobs = process.env.killmobs === null ? process.env.killmobs = true : process.env.killmobs;
-   process.env.killplayers = process.env.killplayers === null ? process.env.killmobs = true :  process.env.killplayers; 
+  
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
@@ -63,14 +64,14 @@ function init(){
 
 
          if (!nearentity && !nearplayer) {return;}
-         if(nearentity && process.env.killmobs){
+         if(nearentity && killmobs){
          if( nearentity.position.distanceTo(bot.entity.position )<=7){
                      bot.lookAt(nearentity.position.offset(1,1,1));
                      bot.attack(nearentity); 
                      
          }
         }
-         if(nearplayer &&  process.env.killplayers){
+         if(nearplayer &&  killplayers){
              if(nearplayer.position.distanceTo(bot.entity.position) <=7){
                      bot.lookAt(nearplayer.position.offset(1,1,1));
                      bot.attack(nearplayer);
@@ -124,11 +125,11 @@ function init(){
               bot.chat(' .afkbot follow --- toggle bot follow');
               bot.chat(' .afkbot home --- make bot go home');
             }else if(message === '.afkbot toggleplayer'){
-               process.env.killplayers = ! process.env.killplayers;
-              bot.chat('toggled killing player to ' +  process.env.killplayers);
+               killplayers = !killplayers;
+              bot.chat('toggled killing player to ' +  killplayers);
             }else if(message === '.afkbot togglemob'){
-               process.env.killmobs = !process.env.killmobs;
-               bot.chat('toggled killing mobs to ' + process.env.killmobs);
+               killmobs = !killmobs;
+               bot.chat('toggled killing mobs to ' + killmobs);
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end(0);
