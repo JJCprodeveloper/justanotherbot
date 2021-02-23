@@ -28,8 +28,8 @@ function executeAsync(func){
 
 
 function init(){
-    process.env.process.env.killmobs = process.env.process.env.killmobs === null ? process.env.process.env.killmobs = true : process.env.process.env.killmobs;
-    process.env. process.env.killplayers = process.env. process.env.killplayers === null ? process.env.process.env.killmobs = true :  process.env. process.env.killplayers; 
+    process.env.killmobs = process.env.killmobs === null ? process.env.killmobs = true : process.env.killmobs;
+   process.env.killplayers = process.env.killplayers === null ? process.env.killmobs = true :  process.env.killplayers; 
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
