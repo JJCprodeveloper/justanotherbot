@@ -1,3 +1,4 @@
+/*
 const { exec} = require('child_process');
 var thread1;
 function startThread(){
@@ -17,7 +18,7 @@ function startThread(){
          
       });
 }
-startThread();
+startThread();*/
 
 var express = require('express');
 var app = express();
