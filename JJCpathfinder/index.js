@@ -191,9 +191,6 @@ function inject (bot) {
   }
 
   function isPositionNearPath (pos, path) {
-    if(!pos){
-      return true;
-    }
     for (const node of path) {
       const dx = Math.abs(node.x - pos.x - 0.5)
       const dy = Math.abs(node.y - pos.y - 0.5)
@@ -288,6 +285,9 @@ function inject (bot) {
   }
 
   bot.on('blockUpdate', (oldBlock, newBlock) => {
+    if(!oldBlock.position){
+      resetPath(false);
+    }
     if (isPositionNearPath(oldBlock.position, path) && oldBlock.type !== newBlock.type) {
       resetPath(false)
     }
