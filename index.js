@@ -24,7 +24,7 @@ function init(){
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
         port: 25565,
-        username: 'AfkBot',
+        username: 'AfkBotHostInHeroku',
         password: '',
         version: false,
         auth: 'mojang'
@@ -91,7 +91,8 @@ function init(){
               bot.chat(' .afkbot togglemob --- toggle mob killing');
               bot.chat(' .afkbot leave --- make afkbot leave :((((');
               bot.chat(' .afkbot help --- help page');
-              bot.chat(' .afkbot follow');
+              bot.chat(' .afkbot follow --- toggle bot follow');
+              bot.chat(' .afkbot home --- make bot go home');
             }else if(message === '.afkbot toggleplayer'){
               killplayers = !killplayers;
               bot.chat('toggled killing player to ' + killplayers);
