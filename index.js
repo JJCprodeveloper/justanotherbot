@@ -24,7 +24,7 @@ function init(){
         //DedagraderHIST.aternos.me
         host: 'DedagraderHIST.aternos.me',
         port: 25565,
-        username: 'AfkBotHostInHeroku',
+        username: 'AfkBot',
         password: '',
         version: false,
         auth: 'mojang'
