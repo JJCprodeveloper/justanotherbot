@@ -78,11 +78,16 @@ function init(){
          }
       });
       bot.once('spawn',function(){
+        
         const mcData = require('minecraft-data')(bot.version);
         defaultMove = new Movements(bot, mcData);
         executeAsync(function(){
            bot.chat('/' + Math.random());
         },20000);
+        bot.on('death',function(){
+          bot.chat('stop following ' + tofllow + ' because of dying');
+          tofollow = null;
+        });
         bot.on('chat',function(username,message,translate,jsonMsg,matches){
             if(username === bot.username){return}
             if(message === '.afkbot help'){
@@ -114,7 +119,7 @@ function init(){
             }else if(message === '.afkbot home'){
                 if(tofollow){
                     tofollow = null;
-                    bot.chat('unfollowing '+ username);
+                    bot.chat('unfollowing '+ username); 
                 }
                 bot.chat('going home now ');
                 bot.pathfinder.setMovements(defaultMove);
