@@ -1,4 +1,7 @@
 const mineflayer = require('mineflayer');
+//const fs = require('fs');
+//const readline = require('readline');
+//const path = './home.txt';
 
 const pathfinder = require('./JJCpathfinder').pathfinder;
 
@@ -33,7 +36,7 @@ function init(){
   
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
-        host: 'DedagraderHIST.aternos.me',
+        host: '2builders2destroyers.aternos.me',
         port: 25565,
         username: parauser,
         password: '',
@@ -124,6 +127,7 @@ function init(){
               bot.chat(' .afkbot leave --- make afkbot leave :((((');
               bot.chat(' .afkbot help --- help page');
               bot.chat(' .afkbot follow --- toggle bot follow');
+              bot.chat(' .afkbot sethome --- Set Home for bot to go ');
               bot.chat(' .afkbot home --- make bot go home');
               bot.chat(' .afkbot rejoin --- bot different name join')
             }else if(message === '.afkbot toggleplayer'){
@@ -163,8 +167,10 @@ function init(){
           });
       });
       bot.on('spawn',function(){
-          bot.chat('Sorry i drank too much vodka yesterday');
-          bot.chat('anyway this is just a gift to you all ');
+          bot.chat('hi i am all functioning bot');
+          bot.chat('type .afkbot help for help menu')
+          bot.chat('i joined yourserver because i am bored lol ');
+          bot.chat('dont kick me please');
           
       })
     
