@@ -110,7 +110,7 @@ function init(){
            ran = ran + 1;
            if(ran > threshold){
              bot.chat('its time to say bye times up :(');
-             process.exit(0);
+             process.exit(1);
            }
         },20000);
         
@@ -133,7 +133,7 @@ function init(){
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end();
-                process.exit(0);
+                process.exit();
             }else if(message === '.afkbot follow'){
                 if(tofollow == null){
                     tofollow = username;
