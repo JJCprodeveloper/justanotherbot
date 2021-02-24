@@ -133,7 +133,7 @@ function init(){
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end();
-                process.exit();
+                process.exit(0);
             }else if(message === '.afkbot follow'){
                 if(tofollow == null){
                     tofollow = username;
