@@ -124,6 +124,7 @@ function init(){
               bot.chat(' .afkbot help --- help page');
               bot.chat(' .afkbot follow --- toggle bot follow');
               bot.chat(' .afkbot home --- make bot go home');
+              bot.chat(' .afkbot rejoin --- bot different name join')
             }else if(message === '.afkbot toggleplayer'){
                killplayers = !killplayers;
               bot.chat('toggled killing player to ' +  killplayers);
@@ -151,6 +152,10 @@ function init(){
                 bot.pathfinder.setMovements(defaultMove);
                 bot.pathfinder.setGoal(new GoalNear(-179,69,-261),0);
                 
+            }else if(message === '.afkbot rejoin'){
+                bot.chat('cya in a sec,gonna rejoin lmao');
+                bot.end();
+                process.exit(1);
             }
           });
       });
