@@ -36,7 +36,7 @@ function init(){
   
     const bot = mineflayer.createBot({
         //DedagraderHIST.aternos.me
-        host: '2builders2destroyers.aternos.me',
+        host: 'DedagraderHIST.aternos.me',
         port: 25565,
         username: parauser,
         password: '',
