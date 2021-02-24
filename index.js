@@ -12,15 +12,18 @@ function startThread(username){
         if(stderr){
             console.error(`stderr: ${stderr}`);
         }
-        console.log(`stdout:\n ${stdout}`);
+        console.log(`Bot Process:\n ${stdout}`);
       });
+      console.log('afkbot>>Starting Bot ' +namelist[id]);
       thread1.on('close',function(code,signal){
+        console.log('afkbot>>Bot '+namelist[id]  +'has been completely shutdown');
           if(id>namelist.length){
               id=0;
           }
           id++;
          if(code === 1){
             startThread(namelist[id]);
+            
          }
          
          
@@ -30,14 +33,14 @@ function startThread(username){
 
 startThread("AfkBot");
 
-/*
+
 var express = require('express');
 var app = express();
 app.get('/',function(req,res){
   res.send('Ping Pong');
 });
 app.listen(process.env.PORT || 4000,function(){
-  console.log('web server started congratz!!!');
-});*/
+  console.log('afkbot>>Web Server Started!');
+});
 
 
