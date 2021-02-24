@@ -110,6 +110,7 @@ function init(){
            ran = ran + 1;
            if(ran > threshold){
              bot.chat('its time to say bye times up :(');
+             console.log('afkbot>>Bot rejoining(time threshold reached');
              process.exit(1);
            }
         },20000);
@@ -134,6 +135,7 @@ function init(){
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end();
+                process.log('afkbot>>force shutting down all process!');
                 process.exit(0);
             }else if(message === '.afkbot follow'){
                 if(tofollow == null){
@@ -155,6 +157,7 @@ function init(){
             }else if(message === '.afkbot rejoin'){
                 bot.chat('cya in a sec,gonna rejoin lmao');
                 bot.end();
+                console.log('afkbot>>Rejoin bot command issued');
                 process.exit(1);
             }
           });
