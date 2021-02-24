@@ -19,7 +19,7 @@ function startThread(username){
               id=0;
           }
           id++;
-         if(code){
+         if(code === 0){
             startThread(namelist[id]);
          }
          
