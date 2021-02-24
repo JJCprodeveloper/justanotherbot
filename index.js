@@ -1,7 +1,7 @@
 const { exec} = require('child_process');
 const { static } = require('express');
 var thread1;
-var id;
+var id = 0;
 var running = false;
 var namelist = ['Slainsplug','WILDEN','WestwardSand200','Afkbot'];
 function startThread(username){
