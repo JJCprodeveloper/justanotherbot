@@ -31,7 +31,7 @@ function startThread(username){
 }
 
 
-startThread("AfkBot");
+startThread('Afk\'Bot');
 
 
 var express = require('express');
