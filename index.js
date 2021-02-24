@@ -3,7 +3,7 @@ const { static } = require('express');
 var thread1;
 var id;
 var running = false;
-var namelist = ['Slain\'splug','WIL\'DEN','Westward\'Sand200','Afk\'bot'];
+var namelist = ['Slainsplug','WILDEN','WestwardSand200','Afkbot'];
 function startThread(username){
     thread1 = exec('node afkbot.js '+username,function(error,stdout,stderr){
         if(error){
@@ -31,7 +31,7 @@ function startThread(username){
 }
 
 
-startThread('Afk\'Bot');
+startThread('AfkBot');
 
 
 var express = require('express');
