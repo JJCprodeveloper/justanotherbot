@@ -109,8 +109,9 @@ function init(){
         defaultMove = new Movements(bot, mcData);
         
         executeAsync(function(){
-           bot.chat('/' + Math.random());
            ran = ran + 1;
+           bot.chat('/tell JJCDeveloper ' + ran);
+           
            if(ran > threshold){
              bot.chat('its time to say bye times up :(');
              console.log('afkbot>>Bot rejoining(time threshold reached');
