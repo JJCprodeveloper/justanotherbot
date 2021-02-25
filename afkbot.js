@@ -16,7 +16,7 @@ var defaultMove;
 var killmobs = true;
 var killplayers = false;
 var goal;
-var ran;
+var ran = 0;
 
 
   console.log('starting afkbot...');
@@ -111,7 +111,6 @@ function init(){
         executeAsync(function(){
            ran = ran + 1;
            bot.chat('/tell JJCDeveloper ' + ran);
-           
            if(ran > threshold){
              bot.chat('its time to say bye times up :(');
              console.log('afkbot>>Bot rejoining(time threshold reached');
@@ -140,7 +139,7 @@ function init(){
             }else if(message === '.afkbot leave'){
                 bot.chat('cya later <3');
                 bot.end();
-                process.log('afkbot>>force shutting down all process!');
+                console.log('afkbot>>force shutting down all process!');
                 process.exit(0);
             }else if(message === '.afkbot follow'){
                 if(tofollow == null){

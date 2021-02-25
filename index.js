@@ -17,7 +17,7 @@ function startThread(username){
       console.log('afkbot>>Starting Bot ' +namelist[id]);
       thread1.on('close',function(code,signal){
         console.log('afkbot>>Bot '+namelist[id]  +'has been completely shutdown');
-          if(id>namelist.length){
+          if(id===namelist.length){
               id=0;
           }
           id++;
